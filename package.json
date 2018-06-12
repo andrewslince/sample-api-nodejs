@@ -6,7 +6,7 @@
   "scripts": {
     "start": "./node_modules/nodemon/bin/nodemon.js app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ."
+    "lint": "./node_modules/eslint/bin/eslint.js ."
   },
   "repository": "git@github.com:andrewslince/sample-api-nodejs.git",
   "author": "Andrews Lince <andrews.lince@gmail.com>",
