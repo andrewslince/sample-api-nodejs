@@ -1,5 +1,6 @@
 'use strict';
 
+const Sequelize = require('sequelize');
 const configger = require('../utils/configger.js');
 const dbUri = configger.get('db.dialect')
   + '://' + configger.get('DB_USER')
@@ -7,7 +8,4 @@ const dbUri = configger.get('db.dialect')
   + '@' + configger.get('DB_HOST')
   + '/' + configger.get('DB_NAME');
 
-const Sequelize = require('sequelize');
-const db = new Sequelize(dbUri, configger.get('db'));
-
-module.exports = db;
+module.exports = new Sequelize(dbUri, configger.get('db'));
