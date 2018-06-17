@@ -1,25 +1,13 @@
 'use strict';
 
+const configger = require('../utils/configger.js');
+const dbUri = configger.get('db.dialect')
+  + '://' + configger.get('DB_USER')
+  + ':' + configger.get('DB_PASS')
+  + '@' + configger.get('DB_HOST')
+  + '/' + configger.get('DB_NAME');
+
 const Sequelize = require('sequelize');
-const db = new Sequelize('database_name', 'user', 'password', {
-  host: 'localhost',
-  dialect: 'mysql',
-  operatorsAliases: false,
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  },
-  define: {
-    underscored: true,
-    freezeTableName: true,
-    charset: 'utf8',
-    dialectOptions: {
-      collate: 'utf8_general_ci'
-    },
-    timestamps: true
-  },
-});
+const db = new Sequelize(dbUri, configger.get('db'));
 
 module.exports = db;

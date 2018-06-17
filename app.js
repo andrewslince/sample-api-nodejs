@@ -1,10 +1,9 @@
 'use strict';
 
 const bodyParser = require('body-parser');
-const config = require('./config/config');
 const express = require('express');
 const app = new express();
-
+const configger = require('./utils/configger.js');
 const User = require('./db/schemas/user');
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -12,7 +11,7 @@ app.use(bodyParser.json());
 
 // define routes
 require('./routes/usersRoutes')(app);
-require('./routes/versionRoutes')(app, config);
+require('./routes/versionRoutes')(app);
 
 app.get('/db', (req, res) => {
     User

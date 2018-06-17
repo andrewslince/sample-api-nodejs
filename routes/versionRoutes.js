@@ -1,8 +1,10 @@
 'use strict';
 
-const getVersionRoutes = (app, config) => {
+const configger = require('../utils/configger.js');
+
+const getVersionRoutes = (app) => {
     app.get('/api/version', (req, res) => {
-        res.send(config.version);
+        res.send(configger.get('version'));
     });
 };
 
