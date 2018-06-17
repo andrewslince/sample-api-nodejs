@@ -14,36 +14,36 @@ require('./routes/usersRoutes')(app);
 require('./routes/versionRoutes')(app);
 
 app.get('/db', (req, res) => {
-    User
+  User
 
-      // force: true will drop the table if it already exists
-      .sync({ force: false })
+    // force: true will drop the table if it already exists
+    .sync({ force: false })
 
-      // create row
-      .then(() => {
-        // table created
-        return User.create({
-          name: 'Andrews Lince',
-          email: 'ANDREWS.LINCE@GMAIL.COM',
-          gender: 'male'
-        });
-      })
-
-      //
-      .then(user => {
-        res.send('User "' + user.get('name') + '" was created successfully');
-      })
-
-      // handle errors
-      .catch(err => {
-        res.send('Failed to create user:' + err);
+    // create row
+    .then(() => {
+      // table created
+      return User.create({
+        name: 'Andrews Lince',
+        email: 'ANDREWS.LINCE@GMAIL.COM',
+        gender: 'male'
       });
+    })
+
+    //
+    .then(user => {
+      res.send('User "' + user.get('name') + '" was created successfully');
+    })
+
+    // handle errors
+    .catch(err => {
+      res.send('Failed to create user:' + err);
+    });
 });
 
 // another way to define routes
 app.use('/products', require('./routes/productsRoutes'));
 
 app.listen(3000, () => {
-    /* eslint-disable */
-    console.log('Server is up!');
+  /* eslint-disable */
+  console.log('Server is up!');
 });
